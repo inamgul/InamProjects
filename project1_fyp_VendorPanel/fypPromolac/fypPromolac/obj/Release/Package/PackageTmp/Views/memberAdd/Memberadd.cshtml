@@ -1,0 +1,88 @@
+﻿@model fypPromolac.Models.member
+
+@{
+    ViewBag.Title = "Memberadd";
+}
+
+@{
+    ViewBag.Message = "hello";
+}
+    <h2 style="font-size: 34px;
+    font-weight: 900;
+    text-align: center">
+ADD MEMBER    </h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.m_name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.m_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.m_name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.m_userName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.m_userName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.m_userName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.m_password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.m_password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.m_password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.m_role, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.m_role, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.m_role, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--<div class="form-group">
+            @Html.LabelFor(model => model.m_admin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.m_admin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.m_admin, "", new { @class = "text-danger" })
+            </div>
+        </div>-->
+
+        @if (User.IsInRole("admin"))
+        {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="memadd" type="submit" value="Create User" class="btn btn-default"  />
+            </div>
+        </div>
+        }
+        else
+        {
+            ;
+        }
+    </div>
+}
+
+    <script type="text/javascript">
+
+      
+        $('#memadd').click(function(){
+  alert("The paragraph was clicked.");
+});
+       
+    </script>
+
+<div>
+    @Html.ActionLink("Back to Home", "../controlPanel/controlPanel")
+</div>

@@ -1,0 +1,90 @@
+﻿@model fypPromolac.Models.packageModel
+
+
+@{
+    ViewBag.Title = "packageDetails";
+}
+<br />
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6" style="background-color: darkturquoise;color:aliceblue;margin-top:6%;
+    padding: 15px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;">PACKAGE DETAILS</div>
+    <div class="col-sm-3"></div>
+</div>
+<br />
+<br />
+
+
+
+<hr />
+
+<div class="row">
+    <div class="col-md-2"></div>
+        @Html.LabelFor(model => model.packageName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-8">
+            @Html.EditorFor(model => model.packageName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.packageName, "", new { @class = "text-danger" })
+</div>
+
+        </div>
+<br />
+<div class="row">
+    <div class="col-md-2"></div>
+    @Html.LabelFor(model => model.subUsersAllowed, htmlAttributes: new { @class = "control-label col-md-2" })
+<div class="col-md-8">
+    @Html.EditorFor(model => model.subUsersAllowed, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+    @Html.ValidationMessageFor(model => model.subUsersAllowed, "", new { @class = "text-danger" })
+</div>
+
+    </div>
+<br />
+    <div class="row">
+        <div class="col-md-2"></div>
+        @Html.LabelFor(model => model.messagesAllowed, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-8">
+        @Html.EditorFor(model => model.messagesAllowed, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        @Html.ValidationMessageFor(model => model.messagesAllowed, "", new { @class = "text-danger" })
+
+    </div>
+        </div>
+    <br />
+        <div class="row">
+            <div class="col-md-2"></div>
+            @Html.LabelFor(model => model.packageDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.packageDescription, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"} })
+                @Html.ValidationMessageFor(model => model.packageDescription, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        <br />
+            <div class="row">
+                <div class="col-md-2"></div>
+                @Html.LabelFor(model => model.packageDurationDays, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.packageDurationDays, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.packageDurationDays, "", new { @class = "text-danger" })
+                    
+
+                </div>
+
+            </div>
+
+
+<h4>Your Package will expire on @Model.endtime</h4>
+
+
+
+<br /><br />
+            <div class="row">
+                <div class="col-lg-5"></div>
+                <div class="col-lg-4">
+                    <button type="button" class="btn btn-info ">@Html.ActionLink("Back To Home", "../controlPanel/controlPanel")</button>
+                </div>
+                <div class="col-lg-3"></div>
+            </div>
+

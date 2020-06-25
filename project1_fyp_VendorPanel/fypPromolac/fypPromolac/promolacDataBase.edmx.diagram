@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fb8f1f6f0eff4211b13296e8a032236e" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="promoLacDbModel.mainAdmin" Width="1.5" PointX="2.875" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="promoLacDbModel.package" Width="1.5" PointX="3.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="promoLacDbModel.sysdiagram" Width="1.5" PointX="0.75" PointY="2.25" />
+        <EntityTypeShape EntityType="promoLacDbModel.dealCategory" Width="1.5" PointX="14.625" PointY="9.625" />
+        <EntityTypeShape EntityType="promoLacDbModel.userPackage" Width="1.5" PointX="6.5" PointY="1.125" />
+        <EntityTypeShape EntityType="promoLacDbModel.vendor" Width="1.5" PointX="6.25" PointY="6.875" />
+        <AssociationConnector Association="promoLacDbModel.FK__vendor__vendorAd__625A9A57" />
+        <AssociationConnector Association="promoLacDbModel.FK__userPacka__packa__5812160E" />
+        <AssociationConnector Association="promoLacDbModel.FK__userPacka__vendo__571DF1D5" />
+        <AssociationConnector Association="promoLacDbModel.FK__vendor__headId__756D6ECB" />
+        <EntityTypeShape EntityType="promoLacDbModel.area" Width="1.5" PointX="1.625" PointY="4.75" />
+        <EntityTypeShape EntityType="promoLacDbModel.areaAssigned" Width="1.5" PointX="8.25" PointY="8.625" />
+        <AssociationConnector Association="promoLacDbModel.FK__areaAssig__areaI__7D439ABD" />
+        <AssociationConnector Association="promoLacDbModel.FK__areaAssig__vendo__7C4F7684" />
+        <EntityTypeShape EntityType="promoLacDbModel.deal" Width="1.5" PointX="16.875" PointY="7.75" />
+        <EntityTypeShape EntityType="promoLacDbModel.fence" Width="1.5" PointX="8.25" PointY="12.125" />
+        <EntityTypeShape EntityType="promoLacDbModel.notification" Width="1.5" PointX="9.5" PointY="3.25" />
+        <AssociationConnector Association="promoLacDbModel.FK__notificat__notif__4BAC3F29" />
+        <AssociationConnector Association="promoLacDbModel.FK__deals__dealCateg__690797E6" />
+        <AssociationConnector Association="promoLacDbModel.FK__deals__adminId__2DB1C7EE" />
+        <AssociationConnector Association="promoLacDbModel.FK__deals__vendorId__74794A92" />
+        <AssociationConnector Association="promoLacDbModel.FK__fence__adminId__2CBDA3B5" />
+        <AssociationConnector Association="promoLacDbModel.FK__fence__vendorId__1B9317B3" />
+        <AssociationConnector Association="promoLacDbModel.FK__notificat__admin__2EA5EC27" />
+        <AssociationConnector Association="promoLacDbModel.FK__notificat__vendo__7E02B4CC" />
+        <EntityTypeShape EntityType="promoLacDbModel.messages_" Width="1.5" PointX="10.5" PointY="8" />
+        <AssociationConnector Association="promoLacDbModel.FK__messages___areaI__6CA31EA0" />
+        <AssociationConnector Association="promoLacDbModel.FK__messages___admin__6BAEFA67" />
+        <AssociationConnector Association="promoLacDbModel.FK__messages___vendo__6ABAD62E" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

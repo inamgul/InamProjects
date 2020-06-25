@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="userAuthenticationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="userAuthenticationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="userInfo" EntityType="userAuthenticationModel.userInfo" />
+    <EntitySet Name="areas" EntityType="userAuthenticationModel.areas" />
+    <AssociationSet Name="FK__areas__areaId__5DCAEF64" Association="userAuthenticationModel.FK__areas__areaId__5DCAEF64">
+      <End Role="userInfo" EntitySet="userInfo" />
+      <End Role="areas" EntitySet="areas" />
+    </AssociationSet>
+    <EntitySet Name="packages" EntityType="userAuthenticationModel.packages" />
+    <EntitySet Name="members" EntityType="userAuthenticationModel.members" />
+    <EntitySet Name="messages" EntityType="userAuthenticationModel.messages" />
+    <EntitySet Name="notificationTable" EntityType="userAuthenticationModel.notificationTable" />
+  </EntityContainer>
+  <EntityType Name="userInfo">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="areas" Relationship="userAuthenticationModel.FK__areas__areaId__5DCAEF64" FromRole="userInfo" ToRole="areas" />
+    <Property Name="userRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="userAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="m_Allowed" Type="Int32" />
+    <Property Name="m_sent" Type="Int32" />
+  </EntityType>
+  <EntityType Name="areas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="areaId" Type="Int32" Nullable="false" />
+    <Property Name="areaName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="userInfo" Relationship="userAuthenticationModel.FK__areas__areaId__5DCAEF64" FromRole="areas" ToRole="userInfo" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <Association Name="FK__areas__areaId__5DCAEF64">
+    <End Type="userAuthenticationModel.userInfo" Role="userInfo" Multiplicity="1" />
+    <End Type="userAuthenticationModel.areas" Role="areas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userInfo">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="areas">
+        <PropertyRef Name="areaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="packages">
+    <Key>
+      <PropertyRef Name="pkgId" />
+    </Key>
+    <Property Name="pkgId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="pakgName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="subUserAllowed" Type="Int32" Nullable="false" />
+    <Property Name="notfAllowed" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="members">
+    <Key>
+      <PropertyRef Name="memberID" />
+    </Key>
+    <Property Name="memberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="m_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="m_userName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="m_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="m_role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="m_admin" Type="Int32" />
+  </EntityType>
+  <EntityType Name="messages">
+    <Key>
+      <PropertyRef Name="messageid" />
+    </Key>
+    <Property Name="messageid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="m_allowed" Type="Int32" Nullable="false" />
+    <Property Name="m_sent" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="notificationTable">
+    <Key>
+      <PropertyRef Name="notificationId" />
+    </Key>
+    <Property Name="notificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="notificationTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="notificationDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="areaNotifier" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="notificationImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

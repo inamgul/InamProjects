@@ -1,0 +1,42 @@
+﻿@model fypPromolac.Models.area
+@{
+    ViewBag.Title = "Addarea";
+}
+
+<h2>Addarea</h2>
+@using (Html.BeginForm("AddArea", "userInfoes", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+<div class="form-group">
+    @Html.LabelFor(Model => Model.areaId, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+
+        @Html.DisplayFor(Model => Model.areaId)
+
+    </div>
+    @Html.LabelFor(Model => Model.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+
+        @Html.DisplayFor(Model => Model.Id)
+
+    </div>
+
+
+    @Html.LabelFor(Model => Model.areaName, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+
+        @Html.DropDownListFor(Model => Model.areaName, new SelectList(Model.detail, "areaName", "areaName"), "---")
+
+
+    </div>
+</div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+
+    <button>@Html.ActionLink("Back to Home", "../controlPanel/controlPanel")</button>
+}

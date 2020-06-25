@@ -1,0 +1,191 @@
+﻿@model fypPromolac.Models.vendorModel
+
+@{
+    ViewBag.Title = "";
+}
+<br />
+<br />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.js"></script>
+
+@using (Html.BeginForm("Create", "UserInfoes", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4" style="background-color: darkturquoise;color:aliceblue;margin-top:6%;
+    padding: 15px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;">CREAT NEW MEMBER</div>
+        <div class="col-sm-4"></div>
+    </div>
+    <div class="form-horizontal" style="margin-top:8%;">
+
+        <hr />
+        <!--First row-->
+        <div class="row" style="
+    background-color: aliceblue;
+    color: teal;margin-left:-1%;padding-left:4%;
+">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.vendorId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.messagesStock, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.fencingHoursStock, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "" })
+                    <br />
+
+                    @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "" })
+
+                    @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.phoneNumber, htmlAttributes: new { @class = "" })
+
+                    @Html.EditorFor(model => model.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.phoneNumber, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+        </div>
+        <br />
+        <br />
+        <!--Second row-->
+        <div class="row" style="
+    background-color: aliceblue;
+    color: teal;margin-left:-1%;padding-left:4%;">
+
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.vendorEmail, htmlAttributes: new { @class = "" })
+
+                    @Html.EditorFor(model => model.vendorEmail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.vendorEmail, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.vendorUserName, htmlAttributes: new { @class = "" })
+
+                    @Html.EditorFor(model => model.vendorUserName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.vendorUserName, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.vendorPassword, htmlAttributes: new { @class = "" })
+
+                    @Html.PasswordFor(model => model.vendorPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.vendorPassword, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <div class="row" style="
+    background-color: aliceblue;
+    color: teal;margin-left:-1%;padding-left:4%;">
+
+            <div class="col-sm-4">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.fencingHours, htmlAttributes: new { @class = "" })
+
+                        @Html.EditorFor(model => model.fencingHours, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fencingHours, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.messagesAllowed, htmlAttributes: new { @class = "" })
+
+                    @Html.EditorFor(model => model.messagesAllowed, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.messagesAllowed, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.areas, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(x => x.areas
+                   , Model.detail.Select(x => new SelectListItem { Text = x.areaName, Value = x.areaId.ToString() }), new { @class = "form-control chosen-select", @multiple = true })
+                    </div>
+                </div>
+            </div>
+        </div><br /><br />
+        <div class="row">
+            <div class="col-sm-4" style="text-align:center;"> </div>
+
+
+            <div class="col-sm-4">
+                <button type="button" class="btn btn-info btn-primary btn-md" style="width:45%;"> @Html.ActionLink("Back", "../controlPanel/controlPanel")</button>
+                <button onclick="return check()" class="btn btn-info btn-primary btn-md" style="width:45%;margin-left:7%;" >create</button>
+            </div>
+
+
+            <div class="col-md-4 ">
+
+            </div>
+
+        </div>
+
+    </div>
+}
+
+<div>
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+
+    $('.chosen-select').chosen();
+
+    function check() {
+        var messages_Allowed = parseInt(document.getElementById('messagesStock').value);
+        var messages_Allotted = parseInt(document.getElementById('messagesAllowed').value);
+        var fencingHours = parseInt(document.getElementById('fencingHours').value);
+        var fencingHoursStock = parseInt(document.getElementById('fencingHoursStock').value);
+        
+        if (messages_Allowed > messages_Allotted) {
+            if (fencingHoursStock > fencingHours) {
+                return true;
+            }
+            else {
+                alert("You can alot only " + fencingHoursStock + " fencing hours");
+                return false;
+            }
+            
+        }
+        else {
+            alert("You can alot only " + messages_Allowed + " messages");
+            return false;
+            
+        }
+    }
+
+
+</script>

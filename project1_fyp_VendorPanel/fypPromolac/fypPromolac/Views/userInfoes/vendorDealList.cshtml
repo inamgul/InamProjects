@@ -1,0 +1,67 @@
+﻿@model IEnumerable<fypPromolac.deal>
+
+@{
+    ViewBag.Title = "vendorDealList";
+}
+
+<h2>vendorDealList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.vendor.vendorUserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dealName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dealPrice)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.dealDescription)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dealCategory1.categoryName)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.vendor.vendorUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dealName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dealPrice)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.dealDescription)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dealCategory1.categoryName)
+            </td>
+
+
+        </tr>
+    }
+
+</table>

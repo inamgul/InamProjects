@@ -1,0 +1,1110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="promoLacDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="areaId" />
+          </Key>
+          <Property Name="areaId" Type="int" Nullable="false" />
+          <Property Name="areaName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="areaHashCode" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="areaAssigned">
+          <Key>
+            <PropertyRef Name="vendorId" />
+            <PropertyRef Name="areaId" />
+          </Key>
+          <Property Name="vendorId" Type="int" Nullable="false" />
+          <Property Name="areaId" Type="int" Nullable="false" />
+          <Property Name="assignId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dealCategory">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="deals">
+          <Key>
+            <PropertyRef Name="dealsId" />
+          </Key>
+          <Property Name="dealsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dealName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="dealPrice" Type="float" Nullable="false" />
+          <Property Name="longitude" Type="float" Nullable="false" />
+          <Property Name="latitude" Type="float" Nullable="false" />
+          <Property Name="dealDescription" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="dealCategory" Type="int" Nullable="false" />
+          <Property Name="vendorId" Type="int" />
+          <Property Name="dealImage" Type="varchar" MaxLength="100" />
+          <Property Name="area" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="adminId" Type="int" />
+          <Property Name="dealTime" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="fence">
+          <Key>
+            <PropertyRef Name="fenceId" />
+          </Key>
+          <Property Name="fenceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vendorId" Type="int" />
+          <Property Name="longitude" Type="float" Nullable="false" />
+          <Property Name="latitude" Type="float" Nullable="false" />
+          <Property Name="radius" Type="int" Nullable="false" />
+          <Property Name="notification" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="startTime" Type="datetime" Nullable="false" />
+          <Property Name="endTime" Type="datetime" Nullable="false" />
+          <Property Name="area" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="adminId" Type="int" />
+        </EntityType>
+        <EntityType Name="mainAdmin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="address_" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password_" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="messages_">
+          <Key>
+            <PropertyRef Name="messageId" />
+          </Key>
+          <Property Name="vendorID" Type="int" />
+          <Property Name="adminID" Type="int" />
+          <Property Name="messageDescription" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="areaId" Type="int" Nullable="false" />
+          <Property Name="messageStatus" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="messageTitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="messageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="notifications">
+          <Key>
+            <PropertyRef Name="notificationId" />
+          </Key>
+          <Property Name="notificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="notificationTitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="notificationDescription" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="notificationStatus" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="notificationAreaId" Type="int" Nullable="false" />
+          <Property Name="vendorId" Type="int" />
+          <Property Name="adminId" Type="int" />
+          <Property Name="notificationTime" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="packages">
+          <Key>
+            <PropertyRef Name="packagesId" />
+          </Key>
+          <Property Name="packagesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="packageName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="messagesAllowed" Type="int" Nullable="false" />
+          <Property Name="subUsersAllowed" Type="int" Nullable="false" />
+          <Property Name="packageDurationDays" Type="int" Nullable="false" />
+          <Property Name="packageDescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="fencingHours" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="userPackages">
+          <Key>
+            <PropertyRef Name="vendorId" />
+            <PropertyRef Name="packageId" />
+          </Key>
+          <Property Name="vendorId" Type="int" Nullable="false" />
+          <Property Name="packageId" Type="int" Nullable="false" />
+          <Property Name="packageStartTime" Type="datetime" Nullable="false" />
+          <Property Name="dividedShareOfMessages" Type="int" Nullable="false" />
+          <Property Name="packageStatus" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="packageEndTime" Type="datetime" Nullable="false" />
+          <Property Name="notificationSent" Type="int" Nullable="false" />
+          <Property Name="remainingFencingHours" Type="int" />
+          <Property Name="fenceCreated" Type="int" Nullable="false" />
+          <Property Name="dealsCreated" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vendor">
+          <Key>
+            <PropertyRef Name="vendorId" />
+          </Key>
+          <Property Name="vendorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="vendorEmail" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="vendorAddress" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="vendorCompanyName" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="registerTimestamp" Type="datetime" Nullable="false" />
+          <Property Name="vendorUserName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="vendorPassword" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="vendorStatus" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="vendorAdminId" Type="int" />
+          <Property Name="headId" Type="int" />
+          <Property Name="isHead" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__areaAssig__areaI__7D439ABD">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="areaAssigned" Type="Self.areaAssigned" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="areaId" />
+            </Principal>
+            <Dependent Role="areaAssigned">
+              <PropertyRef Name="areaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__areaAssig__vendo__7C4F7684">
+          <End Role="vendor" Type="Self.vendor" Multiplicity="1" />
+          <End Role="areaAssigned" Type="Self.areaAssigned" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="areaAssigned">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__deals__adminId__2DB1C7EE">
+          <End Role="mainAdmin" Type="Self.mainAdmin" Multiplicity="0..1" />
+          <End Role="deals" Type="Self.deals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainAdmin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="deals">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__deals__dealCateg__690797E6">
+          <End Role="dealCategory" Type="Self.dealCategory" Multiplicity="1" />
+          <End Role="deals" Type="Self.deals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dealCategory">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="deals">
+              <PropertyRef Name="dealCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__deals__vendorId__74794A92">
+          <End Role="vendor" Type="Self.vendor" Multiplicity="0..1" />
+          <End Role="deals" Type="Self.deals" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="deals">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__fence__adminId__2CBDA3B5">
+          <End Role="mainAdmin" Type="Self.mainAdmin" Multiplicity="0..1" />
+          <End Role="fence" Type="Self.fence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainAdmin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fence">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__fence__vendorId__1B9317B3">
+          <End Role="vendor" Type="Self.vendor" Multiplicity="0..1" />
+          <End Role="fence" Type="Self.fence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="fence">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__messages___admin__6BAEFA67">
+          <End Role="mainAdmin" Type="Self.mainAdmin" Multiplicity="0..1" />
+          <End Role="messages_" Type="Self.messages_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainAdmin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="messages_">
+              <PropertyRef Name="adminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__messages___areaI__6CA31EA0">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="messages_" Type="Self.messages_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="areaId" />
+            </Principal>
+            <Dependent Role="messages_">
+              <PropertyRef Name="areaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__messages___vendo__6ABAD62E">
+          <End Role="vendor" Type="Self.vendor" Multiplicity="0..1" />
+          <End Role="messages_" Type="Self.messages_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="messages_">
+              <PropertyRef Name="vendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__notificat__admin__2EA5EC27">
+          <End Role="mainAdmin" Type="Self.mainAdmin" Multiplicity="0..1" />
+          <End Role="notifications" Type="Self.notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainAdmin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="notifications">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__notificat__notif__4BAC3F29">
+          <End Role="area" Type="Self.area" Multiplicity="1" />
+          <End Role="notifications" Type="Self.notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="areaId" />
+            </Principal>
+            <Dependent Role="notifications">
+              <PropertyRef Name="notificationAreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__notificat__vendo__7E02B4CC">
+          <End Role="vendor" Type="Self.vendor" Multiplicity="0..1" />
+          <End Role="notifications" Type="Self.notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="notifications">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userPacka__packa__5812160E">
+          <End Role="packages" Type="Self.packages" Multiplicity="1" />
+          <End Role="userPackages" Type="Self.userPackages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="packages">
+              <PropertyRef Name="packagesId" />
+            </Principal>
+            <Dependent Role="userPackages">
+              <PropertyRef Name="packageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userPacka__vendo__571DF1D5">
+          <End Role="vendor" Type="Self.vendor" Multiplicity="1" />
+          <End Role="userPackages" Type="Self.userPackages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="userPackages">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vendor__headId__756D6ECB">
+          <End Role="vendor" Type="Self.vendor" Multiplicity="0..1" />
+          <End Role="vendor1" Type="Self.vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="vendor1">
+              <PropertyRef Name="headId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vendor__vendorAd__625A9A57">
+          <End Role="mainAdmin" Type="Self.mainAdmin" Multiplicity="0..1" />
+          <End Role="vendor" Type="Self.vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainAdmin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vendor">
+              <PropertyRef Name="vendorAdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="promoLacDbModelStoreContainer">
+          <EntitySet Name="area" EntityType="Self.area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="areaAssigned" EntityType="Self.areaAssigned" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dealCategory" EntityType="Self.dealCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="deals" EntityType="Self.deals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="fence" EntityType="Self.fence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mainAdmin" EntityType="Self.mainAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="messages_" EntityType="Self.messages_" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="notifications" EntityType="Self.notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="packages" EntityType="Self.packages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userPackages" EntityType="Self.userPackages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vendor" EntityType="Self.vendor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__areaAssig__areaI__7D439ABD" Association="Self.FK__areaAssig__areaI__7D439ABD">
+            <End Role="area" EntitySet="area" />
+            <End Role="areaAssigned" EntitySet="areaAssigned" />
+          </AssociationSet>
+          <AssociationSet Name="FK__areaAssig__vendo__7C4F7684" Association="Self.FK__areaAssig__vendo__7C4F7684">
+            <End Role="vendor" EntitySet="vendor" />
+            <End Role="areaAssigned" EntitySet="areaAssigned" />
+          </AssociationSet>
+          <AssociationSet Name="FK__deals__adminId__2DB1C7EE" Association="Self.FK__deals__adminId__2DB1C7EE">
+            <End Role="mainAdmin" EntitySet="mainAdmin" />
+            <End Role="deals" EntitySet="deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__deals__dealCateg__690797E6" Association="Self.FK__deals__dealCateg__690797E6">
+            <End Role="dealCategory" EntitySet="dealCategory" />
+            <End Role="deals" EntitySet="deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__deals__vendorId__74794A92" Association="Self.FK__deals__vendorId__74794A92">
+            <End Role="vendor" EntitySet="vendor" />
+            <End Role="deals" EntitySet="deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__fence__adminId__2CBDA3B5" Association="Self.FK__fence__adminId__2CBDA3B5">
+            <End Role="mainAdmin" EntitySet="mainAdmin" />
+            <End Role="fence" EntitySet="fence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__fence__vendorId__1B9317B3" Association="Self.FK__fence__vendorId__1B9317B3">
+            <End Role="vendor" EntitySet="vendor" />
+            <End Role="fence" EntitySet="fence" />
+          </AssociationSet>
+          <AssociationSet Name="FK__messages___admin__6BAEFA67" Association="Self.FK__messages___admin__6BAEFA67">
+            <End Role="mainAdmin" EntitySet="mainAdmin" />
+            <End Role="messages_" EntitySet="messages_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__messages___areaI__6CA31EA0" Association="Self.FK__messages___areaI__6CA31EA0">
+            <End Role="area" EntitySet="area" />
+            <End Role="messages_" EntitySet="messages_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__messages___vendo__6ABAD62E" Association="Self.FK__messages___vendo__6ABAD62E">
+            <End Role="vendor" EntitySet="vendor" />
+            <End Role="messages_" EntitySet="messages_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__notificat__admin__2EA5EC27" Association="Self.FK__notificat__admin__2EA5EC27">
+            <End Role="mainAdmin" EntitySet="mainAdmin" />
+            <End Role="notifications" EntitySet="notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__notificat__notif__4BAC3F29" Association="Self.FK__notificat__notif__4BAC3F29">
+            <End Role="area" EntitySet="area" />
+            <End Role="notifications" EntitySet="notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__notificat__vendo__7E02B4CC" Association="Self.FK__notificat__vendo__7E02B4CC">
+            <End Role="vendor" EntitySet="vendor" />
+            <End Role="notifications" EntitySet="notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userPacka__packa__5812160E" Association="Self.FK__userPacka__packa__5812160E">
+            <End Role="packages" EntitySet="packages" />
+            <End Role="userPackages" EntitySet="userPackages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userPacka__vendo__571DF1D5" Association="Self.FK__userPacka__vendo__571DF1D5">
+            <End Role="vendor" EntitySet="vendor" />
+            <End Role="userPackages" EntitySet="userPackages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vendor__headId__756D6ECB" Association="Self.FK__vendor__headId__756D6ECB">
+            <End Role="vendor" EntitySet="vendor" />
+            <End Role="vendor1" EntitySet="vendor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vendor__vendorAd__625A9A57" Association="Self.FK__vendor__vendorAd__625A9A57">
+            <End Role="mainAdmin" EntitySet="mainAdmin" />
+            <End Role="vendor" EntitySet="vendor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="promoLacDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="mainAdmin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address_" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password_" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="vendors" Relationship="promoLacDbModel.FK__vendor__vendorAd__625A9A57" FromRole="mainAdmin" ToRole="vendor" />
+          <NavigationProperty Name="deals" Relationship="promoLacDbModel.FK__deals__adminId__2DB1C7EE" FromRole="mainAdmin" ToRole="deal" />
+          <NavigationProperty Name="fences" Relationship="promoLacDbModel.FK__fence__adminId__2CBDA3B5" FromRole="mainAdmin" ToRole="fence" />
+          <NavigationProperty Name="notifications" Relationship="promoLacDbModel.FK__notificat__admin__2EA5EC27" FromRole="mainAdmin" ToRole="notification" />
+          <NavigationProperty Name="messages_" Relationship="promoLacDbModel.FK__messages___admin__6BAEFA67" FromRole="mainAdmin" ToRole="messages_" />
+        </EntityType>
+        <EntityType Name="package">
+          <Key>
+            <PropertyRef Name="packagesId" />
+          </Key>
+          <Property Name="packagesId" Type="Int32" Nullable="false" />
+          <Property Name="packageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="messagesAllowed" Type="Int32" Nullable="false" />
+          <Property Name="subUsersAllowed" Type="Int32" Nullable="false" />
+          <Property Name="packageDurationDays" Type="Int32" Nullable="false" />
+          <Property Name="packageDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="userPackages" Relationship="promoLacDbModel.FK__userPacka__packa__5812160E" FromRole="package" ToRole="userPackage" />
+          <Property Name="fencingHours" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="promoLacDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="mainAdmins" EntityType="Self.mainAdmin" />
+          <EntitySet Name="packages" EntityType="Self.package" />
+          <EntitySet Name="sysdiagrams" EntityType="promoLacDbModel.sysdiagram" />
+          <EntitySet Name="dealCategories" EntityType="promoLacDbModel.dealCategory" />
+          <EntitySet Name="userPackages" EntityType="promoLacDbModel.userPackage" />
+          <EntitySet Name="vendors" EntityType="promoLacDbModel.vendor" />
+          <AssociationSet Name="FK__vendor__vendorAd__625A9A57" Association="promoLacDbModel.FK__vendor__vendorAd__625A9A57">
+            <End Role="mainAdmin" EntitySet="mainAdmins" />
+            <End Role="vendor" EntitySet="vendors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userPacka__packa__5812160E" Association="promoLacDbModel.FK__userPacka__packa__5812160E">
+            <End Role="package" EntitySet="packages" />
+            <End Role="userPackage" EntitySet="userPackages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__userPacka__vendo__571DF1D5" Association="promoLacDbModel.FK__userPacka__vendo__571DF1D5">
+            <End Role="vendor" EntitySet="vendors" />
+            <End Role="userPackage" EntitySet="userPackages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vendor__headId__756D6ECB" Association="promoLacDbModel.FK__vendor__headId__756D6ECB">
+            <End Role="vendor" EntitySet="vendors" />
+            <End Role="vendor1" EntitySet="vendors" />
+          </AssociationSet>
+          <EntitySet Name="areas" EntityType="promoLacDbModel.area" />
+          <EntitySet Name="areaAssigneds" EntityType="promoLacDbModel.areaAssigned" />
+          <AssociationSet Name="FK__areaAssig__areaI__7D439ABD" Association="promoLacDbModel.FK__areaAssig__areaI__7D439ABD">
+            <End Role="area" EntitySet="areas" />
+            <End Role="areaAssigned" EntitySet="areaAssigneds" />
+          </AssociationSet>
+          <AssociationSet Name="FK__areaAssig__vendo__7C4F7684" Association="promoLacDbModel.FK__areaAssig__vendo__7C4F7684">
+            <End Role="vendor" EntitySet="vendors" />
+            <End Role="areaAssigned" EntitySet="areaAssigneds" />
+          </AssociationSet>
+          <EntitySet Name="deals" EntityType="promoLacDbModel.deal" />
+          <EntitySet Name="fences" EntityType="promoLacDbModel.fence" />
+          <EntitySet Name="notifications" EntityType="promoLacDbModel.notification" />
+          <AssociationSet Name="FK__notificat__notif__4BAC3F29" Association="promoLacDbModel.FK__notificat__notif__4BAC3F29">
+            <End Role="area" EntitySet="areas" />
+            <End Role="notification" EntitySet="notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__deals__dealCateg__690797E6" Association="promoLacDbModel.FK__deals__dealCateg__690797E6">
+            <End Role="dealCategory" EntitySet="dealCategories" />
+            <End Role="deal" EntitySet="deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__deals__adminId__2DB1C7EE" Association="promoLacDbModel.FK__deals__adminId__2DB1C7EE">
+            <End Role="mainAdmin" EntitySet="mainAdmins" />
+            <End Role="deal" EntitySet="deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__deals__vendorId__74794A92" Association="promoLacDbModel.FK__deals__vendorId__74794A92">
+            <End Role="vendor" EntitySet="vendors" />
+            <End Role="deal" EntitySet="deals" />
+          </AssociationSet>
+          <AssociationSet Name="FK__fence__adminId__2CBDA3B5" Association="promoLacDbModel.FK__fence__adminId__2CBDA3B5">
+            <End Role="mainAdmin" EntitySet="mainAdmins" />
+            <End Role="fence" EntitySet="fences" />
+          </AssociationSet>
+          <AssociationSet Name="FK__fence__vendorId__1B9317B3" Association="promoLacDbModel.FK__fence__vendorId__1B9317B3">
+            <End Role="vendor" EntitySet="vendors" />
+            <End Role="fence" EntitySet="fences" />
+          </AssociationSet>
+          <AssociationSet Name="FK__notificat__admin__2EA5EC27" Association="promoLacDbModel.FK__notificat__admin__2EA5EC27">
+            <End Role="mainAdmin" EntitySet="mainAdmins" />
+            <End Role="notification" EntitySet="notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK__notificat__vendo__7E02B4CC" Association="promoLacDbModel.FK__notificat__vendo__7E02B4CC">
+            <End Role="vendor" EntitySet="vendors" />
+            <End Role="notification" EntitySet="notifications" />
+          </AssociationSet>
+          <EntitySet Name="messages_" EntityType="promoLacDbModel.messages_" />
+          <AssociationSet Name="FK__messages___areaI__6CA31EA0" Association="promoLacDbModel.FK__messages___areaI__6CA31EA0">
+            <End Role="area" EntitySet="areas" />
+            <End Role="messages_" EntitySet="messages_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__messages___admin__6BAEFA67" Association="promoLacDbModel.FK__messages___admin__6BAEFA67">
+            <End Role="mainAdmin" EntitySet="mainAdmins" />
+            <End Role="messages_" EntitySet="messages_" />
+          </AssociationSet>
+          <AssociationSet Name="FK__messages___vendo__6ABAD62E" Association="promoLacDbModel.FK__messages___vendo__6ABAD62E">
+            <End Role="vendor" EntitySet="vendors" />
+            <End Role="messages_" EntitySet="messages_" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="dealCategory">
+          <Key>
+            <PropertyRef Name="categoryId" />
+          </Key>
+          <Property Name="categoryId" Type="Int32" Nullable="false" />
+          <Property Name="categoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="deals" Relationship="promoLacDbModel.FK__deals__dealCateg__690797E6" FromRole="dealCategory" ToRole="deal" />
+        </EntityType>
+        <EntityType Name="userPackage">
+          <Key>
+            <PropertyRef Name="vendorId" />
+            <PropertyRef Name="packageId" />
+          </Key>
+          <Property Name="vendorId" Type="Int32" Nullable="false" />
+          <Property Name="packageId" Type="Int32" Nullable="false" />
+          <Property Name="packageStartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dividedShareOfMessages" Type="Int32" Nullable="false" />
+          <Property Name="packageStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="packageEndTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="package" Relationship="promoLacDbModel.FK__userPacka__packa__5812160E" FromRole="userPackage" ToRole="package" />
+          <NavigationProperty Name="vendor" Relationship="promoLacDbModel.FK__userPacka__vendo__571DF1D5" FromRole="userPackage" ToRole="vendor" />
+          <Property Name="notificationSent" Type="Int32" Nullable="false" />
+          <Property Name="remainingFencingHours" Type="Int32" />
+          <Property Name="fenceCreated" Type="Int32" Nullable="false" />
+          <Property Name="dealsCreated" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vendor">
+          <Key>
+            <PropertyRef Name="vendorId" />
+          </Key>
+          <Property Name="vendorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="vendorEmail" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="vendorAddress" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="vendorCompanyName" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="registerTimestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="vendorUserName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="vendorPassword" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="vendorStatus" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="vendorAdminId" Type="Int32" />
+          <Property Name="headId" Type="Int32" />
+          <Property Name="isHead" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="mainAdmin" Relationship="promoLacDbModel.FK__vendor__vendorAd__625A9A57" FromRole="vendor" ToRole="mainAdmin" />
+          <NavigationProperty Name="userPackages" Relationship="promoLacDbModel.FK__userPacka__vendo__571DF1D5" FromRole="vendor" ToRole="userPackage" />
+          <NavigationProperty Name="vendor1" Relationship="promoLacDbModel.FK__vendor__headId__756D6ECB" FromRole="vendor" ToRole="vendor1" />
+          <NavigationProperty Name="vendor2" Relationship="promoLacDbModel.FK__vendor__headId__756D6ECB" FromRole="vendor1" ToRole="vendor" />
+          <NavigationProperty Name="areaAssigneds" Relationship="promoLacDbModel.FK__areaAssig__vendo__7C4F7684" FromRole="vendor" ToRole="areaAssigned" />
+          <NavigationProperty Name="deals" Relationship="promoLacDbModel.FK__deals__vendorId__74794A92" FromRole="vendor" ToRole="deal" />
+          <NavigationProperty Name="fences" Relationship="promoLacDbModel.FK__fence__vendorId__1B9317B3" FromRole="vendor" ToRole="fence" />
+          <NavigationProperty Name="notifications" Relationship="promoLacDbModel.FK__notificat__vendo__7E02B4CC" FromRole="vendor" ToRole="notification" />
+          <NavigationProperty Name="messages_" Relationship="promoLacDbModel.FK__messages___vendo__6ABAD62E" FromRole="vendor" ToRole="messages_" />
+        </EntityType>
+        <Association Name="FK__vendor__vendorAd__625A9A57">
+          <End Type="promoLacDbModel.mainAdmin" Role="mainAdmin" Multiplicity="0..1" />
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainAdmin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vendor">
+              <PropertyRef Name="vendorAdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userPacka__packa__5812160E">
+          <End Type="promoLacDbModel.package" Role="package" Multiplicity="1" />
+          <End Type="promoLacDbModel.userPackage" Role="userPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="package">
+              <PropertyRef Name="packagesId" />
+            </Principal>
+            <Dependent Role="userPackage">
+              <PropertyRef Name="packageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userPacka__vendo__571DF1D5">
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="1" />
+          <End Type="promoLacDbModel.userPackage" Role="userPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="userPackage">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vendor__headId__756D6ECB">
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="0..1" />
+          <End Type="promoLacDbModel.vendor" Role="vendor1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="vendor1">
+              <PropertyRef Name="headId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="areaId" />
+          </Key>
+          <Property Name="areaId" Type="Int32" Nullable="false" />
+          <Property Name="areaName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="areaHashCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="areaAssigneds" Relationship="promoLacDbModel.FK__areaAssig__areaI__7D439ABD" FromRole="area" ToRole="areaAssigned" />
+          <NavigationProperty Name="notifications" Relationship="promoLacDbModel.FK__notificat__notif__4BAC3F29" FromRole="area" ToRole="notification" />
+          <NavigationProperty Name="messages_" Relationship="promoLacDbModel.FK__messages___areaI__6CA31EA0" FromRole="area" ToRole="messages_" />
+        </EntityType>
+        <EntityType Name="areaAssigned">
+          <Key>
+            <PropertyRef Name="vendorId" />
+            <PropertyRef Name="areaId" />
+          </Key>
+          <Property Name="vendorId" Type="Int32" Nullable="false" />
+          <Property Name="areaId" Type="Int32" Nullable="false" />
+          <Property Name="assignId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="area" Relationship="promoLacDbModel.FK__areaAssig__areaI__7D439ABD" FromRole="areaAssigned" ToRole="area" />
+          <NavigationProperty Name="vendor" Relationship="promoLacDbModel.FK__areaAssig__vendo__7C4F7684" FromRole="areaAssigned" ToRole="vendor" />
+        </EntityType>
+        <Association Name="FK__areaAssig__areaI__7D439ABD">
+          <End Type="promoLacDbModel.area" Role="area" Multiplicity="1" />
+          <End Type="promoLacDbModel.areaAssigned" Role="areaAssigned" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="areaId" />
+            </Principal>
+            <Dependent Role="areaAssigned">
+              <PropertyRef Name="areaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__areaAssig__vendo__7C4F7684">
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="1" />
+          <End Type="promoLacDbModel.areaAssigned" Role="areaAssigned" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="areaAssigned">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="deal">
+          <Key>
+            <PropertyRef Name="dealsId" />
+          </Key>
+          <Property Name="dealsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dealName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dealPrice" Type="Double" Nullable="false" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
+          <Property Name="latitude" Type="Double" Nullable="false" />
+          <Property Name="dealDescription" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dealCategory" Type="Int32" Nullable="false" />
+          <Property Name="vendorId" Type="Int32" />
+          <Property Name="dealImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="area" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="adminId" Type="Int32" />
+          <Property Name="dealTime" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="dealCategory1" Relationship="promoLacDbModel.FK__deals__dealCateg__690797E6" FromRole="deal" ToRole="dealCategory" />
+          <NavigationProperty Name="mainAdmin" Relationship="promoLacDbModel.FK__deals__adminId__2DB1C7EE" FromRole="deal" ToRole="mainAdmin" />
+          <NavigationProperty Name="vendor" Relationship="promoLacDbModel.FK__deals__vendorId__74794A92" FromRole="deal" ToRole="vendor" />
+        </EntityType>
+        <EntityType Name="fence">
+          <Key>
+            <PropertyRef Name="fenceId" />
+          </Key>
+          <Property Name="fenceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vendorId" Type="Int32" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
+          <Property Name="latitude" Type="Double" Nullable="false" />
+          <Property Name="radius" Type="Int32" Nullable="false" />
+          <Property Name="notification" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="startTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="area" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="adminId" Type="Int32" />
+          <NavigationProperty Name="mainAdmin" Relationship="promoLacDbModel.FK__fence__adminId__2CBDA3B5" FromRole="fence" ToRole="mainAdmin" />
+          <NavigationProperty Name="vendor" Relationship="promoLacDbModel.FK__fence__vendorId__1B9317B3" FromRole="fence" ToRole="vendor" />
+        </EntityType>
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="notificationId" />
+          </Key>
+          <Property Name="notificationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="notificationTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="notificationDescription" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="notificationStatus" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="notificationAreaId" Type="Int32" Nullable="false" />
+          <Property Name="vendorId" Type="Int32" />
+          <Property Name="adminId" Type="Int32" />
+          <Property Name="notificationTime" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="area" Relationship="promoLacDbModel.FK__notificat__notif__4BAC3F29" FromRole="notification" ToRole="area" />
+          <NavigationProperty Name="mainAdmin" Relationship="promoLacDbModel.FK__notificat__admin__2EA5EC27" FromRole="notification" ToRole="mainAdmin" />
+          <NavigationProperty Name="vendor" Relationship="promoLacDbModel.FK__notificat__vendo__7E02B4CC" FromRole="notification" ToRole="vendor" />
+        </EntityType>
+        <Association Name="FK__notificat__notif__4BAC3F29">
+          <End Type="promoLacDbModel.area" Role="area" Multiplicity="1" />
+          <End Type="promoLacDbModel.notification" Role="notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="areaId" />
+            </Principal>
+            <Dependent Role="notification">
+              <PropertyRef Name="notificationAreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__deals__dealCateg__690797E6">
+          <End Type="promoLacDbModel.dealCategory" Role="dealCategory" Multiplicity="1" />
+          <End Type="promoLacDbModel.deal" Role="deal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dealCategory">
+              <PropertyRef Name="categoryId" />
+            </Principal>
+            <Dependent Role="deal">
+              <PropertyRef Name="dealCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__deals__adminId__2DB1C7EE">
+          <End Type="promoLacDbModel.mainAdmin" Role="mainAdmin" Multiplicity="0..1" />
+          <End Type="promoLacDbModel.deal" Role="deal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainAdmin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="deal">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__deals__vendorId__74794A92">
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="0..1" />
+          <End Type="promoLacDbModel.deal" Role="deal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="deal">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__fence__adminId__2CBDA3B5">
+          <End Type="promoLacDbModel.mainAdmin" Role="mainAdmin" Multiplicity="0..1" />
+          <End Type="promoLacDbModel.fence" Role="fence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainAdmin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="fence">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__fence__vendorId__1B9317B3">
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="0..1" />
+          <End Type="promoLacDbModel.fence" Role="fence" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="fence">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__notificat__admin__2EA5EC27">
+          <End Type="promoLacDbModel.mainAdmin" Role="mainAdmin" Multiplicity="0..1" />
+          <End Type="promoLacDbModel.notification" Role="notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainAdmin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="notification">
+              <PropertyRef Name="adminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__notificat__vendo__7E02B4CC">
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="0..1" />
+          <End Type="promoLacDbModel.notification" Role="notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="notification">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="messages_">
+          <Key>
+            <PropertyRef Name="messageId" />
+          </Key>
+          <Property Name="vendorID" Type="Int32" />
+          <Property Name="adminID" Type="Int32" />
+          <Property Name="messageDescription" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="areaId" Type="Int32" Nullable="false" />
+          <Property Name="messageStatus" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="messageTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="messageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="area" Relationship="promoLacDbModel.FK__messages___areaI__6CA31EA0" FromRole="messages_" ToRole="area" />
+          <NavigationProperty Name="mainAdmin" Relationship="promoLacDbModel.FK__messages___admin__6BAEFA67" FromRole="messages_" ToRole="mainAdmin" />
+          <NavigationProperty Name="vendor" Relationship="promoLacDbModel.FK__messages___vendo__6ABAD62E" FromRole="messages_" ToRole="vendor" />
+        </EntityType>
+        <Association Name="FK__messages___areaI__6CA31EA0">
+          <End Type="promoLacDbModel.area" Role="area" Multiplicity="1" />
+          <End Type="promoLacDbModel.messages_" Role="messages_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="area">
+              <PropertyRef Name="areaId" />
+            </Principal>
+            <Dependent Role="messages_">
+              <PropertyRef Name="areaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__messages___admin__6BAEFA67">
+          <End Type="promoLacDbModel.mainAdmin" Role="mainAdmin" Multiplicity="0..1" />
+          <End Type="promoLacDbModel.messages_" Role="messages_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainAdmin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="messages_">
+              <PropertyRef Name="adminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__messages___vendo__6ABAD62E">
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="0..1" />
+          <End Type="promoLacDbModel.messages_" Role="messages_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="messages_">
+              <PropertyRef Name="vendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="promoLacDbModelStoreContainer" CdmEntityContainer="promoLacDbEntities">
+          <EntitySetMapping Name="mainAdmins">
+            <EntityTypeMapping TypeName="promoLacDbModel.mainAdmin">
+              <MappingFragment StoreEntitySet="mainAdmin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address_" ColumnName="address_" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password_" ColumnName="password_" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="packages">
+            <EntityTypeMapping TypeName="promoLacDbModel.package">
+              <MappingFragment StoreEntitySet="packages">
+                <ScalarProperty Name="fencingHours" ColumnName="fencingHours" />
+                <ScalarProperty Name="packagesId" ColumnName="packagesId" />
+                <ScalarProperty Name="packageName" ColumnName="packageName" />
+                <ScalarProperty Name="messagesAllowed" ColumnName="messagesAllowed" />
+                <ScalarProperty Name="subUsersAllowed" ColumnName="subUsersAllowed" />
+                <ScalarProperty Name="packageDurationDays" ColumnName="packageDurationDays" />
+                <ScalarProperty Name="packageDescription" ColumnName="packageDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="promoLacDbModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dealCategories">
+            <EntityTypeMapping TypeName="promoLacDbModel.dealCategory">
+              <MappingFragment StoreEntitySet="dealCategory">
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userPackages">
+            <EntityTypeMapping TypeName="promoLacDbModel.userPackage">
+              <MappingFragment StoreEntitySet="userPackages">
+                <ScalarProperty Name="dealsCreated" ColumnName="dealsCreated" />
+                <ScalarProperty Name="fenceCreated" ColumnName="fenceCreated" />
+                <ScalarProperty Name="remainingFencingHours" ColumnName="remainingFencingHours" />
+                <ScalarProperty Name="notificationSent" ColumnName="notificationSent" />
+                <ScalarProperty Name="packageEndTime" ColumnName="packageEndTime" />
+                <ScalarProperty Name="packageStatus" ColumnName="packageStatus" />
+                <ScalarProperty Name="dividedShareOfMessages" ColumnName="dividedShareOfMessages" />
+                <ScalarProperty Name="packageStartTime" ColumnName="packageStartTime" />
+                <ScalarProperty Name="packageId" ColumnName="packageId" />
+                <ScalarProperty Name="vendorId" ColumnName="vendorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vendors">
+            <EntityTypeMapping TypeName="promoLacDbModel.vendor">
+              <MappingFragment StoreEntitySet="vendor">
+                <ScalarProperty Name="isHead" ColumnName="isHead" />
+                <ScalarProperty Name="headId" ColumnName="headId" />
+                <ScalarProperty Name="vendorAdminId" ColumnName="vendorAdminId" />
+                <ScalarProperty Name="vendorStatus" ColumnName="vendorStatus" />
+                <ScalarProperty Name="vendorPassword" ColumnName="vendorPassword" />
+                <ScalarProperty Name="vendorUserName" ColumnName="vendorUserName" />
+                <ScalarProperty Name="registerTimestamp" ColumnName="registerTimestamp" />
+                <ScalarProperty Name="vendorCompanyName" ColumnName="vendorCompanyName" />
+                <ScalarProperty Name="vendorAddress" ColumnName="vendorAddress" />
+                <ScalarProperty Name="vendorEmail" ColumnName="vendorEmail" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="vendorId" ColumnName="vendorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="areas">
+            <EntityTypeMapping TypeName="promoLacDbModel.area">
+              <MappingFragment StoreEntitySet="area">
+                <ScalarProperty Name="areaHashCode" ColumnName="areaHashCode" />
+                <ScalarProperty Name="areaName" ColumnName="areaName" />
+                <ScalarProperty Name="areaId" ColumnName="areaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="areaAssigneds">
+            <EntityTypeMapping TypeName="promoLacDbModel.areaAssigned">
+              <MappingFragment StoreEntitySet="areaAssigned">
+                <ScalarProperty Name="assignId" ColumnName="assignId" />
+                <ScalarProperty Name="areaId" ColumnName="areaId" />
+                <ScalarProperty Name="vendorId" ColumnName="vendorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="deals">
+            <EntityTypeMapping TypeName="promoLacDbModel.deal">
+              <MappingFragment StoreEntitySet="deals">
+                <ScalarProperty Name="dealTime" ColumnName="dealTime" />
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="dealImage" ColumnName="dealImage" />
+                <ScalarProperty Name="vendorId" ColumnName="vendorId" />
+                <ScalarProperty Name="dealCategory" ColumnName="dealCategory" />
+                <ScalarProperty Name="dealDescription" ColumnName="dealDescription" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="dealPrice" ColumnName="dealPrice" />
+                <ScalarProperty Name="dealName" ColumnName="dealName" />
+                <ScalarProperty Name="dealsId" ColumnName="dealsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fences">
+            <EntityTypeMapping TypeName="promoLacDbModel.fence">
+              <MappingFragment StoreEntitySet="fence">
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
+                <ScalarProperty Name="area" ColumnName="area" />
+                <ScalarProperty Name="endTime" ColumnName="endTime" />
+                <ScalarProperty Name="startTime" ColumnName="startTime" />
+                <ScalarProperty Name="notification" ColumnName="notification" />
+                <ScalarProperty Name="radius" ColumnName="radius" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="vendorId" ColumnName="vendorId" />
+                <ScalarProperty Name="fenceId" ColumnName="fenceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="promoLacDbModel.notification">
+              <MappingFragment StoreEntitySet="notifications">
+                <ScalarProperty Name="notificationTime" ColumnName="notificationTime" />
+                <ScalarProperty Name="adminId" ColumnName="adminId" />
+                <ScalarProperty Name="vendorId" ColumnName="vendorId" />
+                <ScalarProperty Name="notificationAreaId" ColumnName="notificationAreaId" />
+                <ScalarProperty Name="notificationStatus" ColumnName="notificationStatus" />
+                <ScalarProperty Name="notificationDescription" ColumnName="notificationDescription" />
+                <ScalarProperty Name="notificationTitle" ColumnName="notificationTitle" />
+                <ScalarProperty Name="notificationId" ColumnName="notificationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="messages_">
+            <EntityTypeMapping TypeName="promoLacDbModel.messages_">
+              <MappingFragment StoreEntitySet="messages_">
+                <ScalarProperty Name="messageId" ColumnName="messageId" />
+                <ScalarProperty Name="messageTitle" ColumnName="messageTitle" />
+                <ScalarProperty Name="messageStatus" ColumnName="messageStatus" />
+                <ScalarProperty Name="areaId" ColumnName="areaId" />
+                <ScalarProperty Name="messageDescription" ColumnName="messageDescription" />
+                <ScalarProperty Name="adminID" ColumnName="adminID" />
+                <ScalarProperty Name="vendorID" ColumnName="vendorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

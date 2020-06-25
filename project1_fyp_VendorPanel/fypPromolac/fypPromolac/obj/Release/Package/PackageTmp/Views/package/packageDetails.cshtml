@@ -1,0 +1,61 @@
+﻿@model fypPromolac.Models.pkg
+
+
+@{
+    ViewBag.Title = "packageDetails";
+}
+
+    <h2 style="font-size: 34px;
+    font-weight: 900;
+    text-align: center">
+        PACKAGE DETAILS
+    </h2>
+
+
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="width:40%;text-align:center;">
+
+            @Html.DisplayNameFor(model => model.pakgName)
+            
+        </dt>
+
+        <dd  style="margin-bottom:10px;">
+            @Html.DisplayFor(model => model.pakgName)
+            <br />
+        </dd>
+
+        <dt style="width:40%;text-align:center;">
+            @Html.DisplayNameFor(model => model.subUserAllowed)
+        </dt>
+
+        <dd style="margin-bottom:10px;">
+            @Html.DisplayFor(model => model.subUserAllowed)
+            <br />
+        </dd>
+
+        <dt style="width:40%;text-align:center;">
+            @Html.DisplayNameFor(model => model.notfAllowed)
+        </dt>
+
+        <dd style="margin-bottom:10px;">
+            @Html.DisplayFor(model => model.notfAllowed)
+            <br />
+        </dd>
+        <dt style="width:40%;text-align:center;">
+            @Html.DisplayNameFor(model => model.detail)
+        </dt>
+
+       @foreach(var x in Model.detail)
+       {
+    <span style="margin-right:5px;">@x.areaName</span>
+          
+       }
+
+    </dl>
+
+    <div>
+        @Html.ActionLink("Back To Home", "../controlPanel/controlPanel")
+    </div>
+

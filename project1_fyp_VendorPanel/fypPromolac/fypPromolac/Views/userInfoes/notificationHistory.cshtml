@@ -1,0 +1,53 @@
+﻿@model IEnumerable<fypPromolac.Models.notificationModel>
+
+@{
+    ViewBag.Title = "notificationHistory";
+}
+
+<h2>notificationHistory</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.notificationTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.notificationDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.notificationTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.area.areaName)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.notificationTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.notificationDescription)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.notificationTime)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.areas)
+    </td>
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.notificationId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.notificationId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.notificationId })
+    </td>
+</tr>
+}
+
+</table>

@@ -1,0 +1,3 @@
+This was initial version of companies website made by me when I was working with skynners...
+This code cannot be used without "skynners.com" permission
+This Website was made on HTML,CSS,JS,JQuery,Bootstrap

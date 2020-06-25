@@ -1,0 +1,42 @@
+﻿@model fypPromolac.Models.pkg
+
+@{
+    ViewBag.Title = "packageDetails1";
+}
+
+<h2>packageDetails1</h2>
+
+<div>
+    <h4>packages</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.pakgName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pakgName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.subUserAllowed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.subUserAllowed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.notfAllowed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.pkgId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

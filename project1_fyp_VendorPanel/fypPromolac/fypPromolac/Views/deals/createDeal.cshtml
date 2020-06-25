@@ -1,0 +1,201 @@
+﻿@model fypPromolac.Models.dealsModel
+
+@{
+    ViewBag.Title = "createDeal";
+}
+
+
+
+@using (Ajax.BeginForm("createDeal", "deals", new AjaxOptions()
+{
+
+
+    OnSuccess = "funSucc",
+    OnFailure = "funFail",
+    HttpMethod = "Post"
+
+},
+new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4" style="background-color: darkturquoise;color:aliceblue;margin-top:6%;
+    padding: 15px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;">CREATE DEAL</div>
+        <div class="col-sm-4"></div>
+    </div>
+
+    <div class="form-horizontal">
+
+        <hr />
+        <br />
+        <div class="col-sm-3"></div>
+        <div class="col-sm-5">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.longitude, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.HiddenFor(model => model.latitude, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="form-group">
+                @Html.LabelFor(model => model.dealName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dealName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dealName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.dealPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dealPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dealPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.dealCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.dealCategory, new SelectList(Model.dealCategoryLists, "categoryName", "categoryName"), "selected")
+
+                    @Html.ValidationMessageFor(model => model.dealCategory, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.dealDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.dealDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dealDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.dealImage, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    <input type="file" id="dealsImage" name="dealsImage" />
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AreaName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AreaName, new { htmlAttributes = new { @class = "form-control", @id = "areaName" } })
+                    @Html.ValidationMessageFor(model => model.AreaName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">CONFIRMATION!</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            Are You Sure To Create Deal?
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Create</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="button" class="btn btn-default" style="width:45%;">@Html.ActionLink("Back to Home", "../controlPanel/controlPanel")</button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"  style="width:45%;">
+                        Create
+                    </button>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
+
+        }
+
+      
+
+
+
+
+        <div id="alertSuccess" class="alert alert-success alert-dismissible" style="display:none;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Success!</strong> Deal Created Successfully!
+        </div>
+        <div id="alertFail" class="alert alert-danger alert-dismissible" style="display:none;">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Failed!</strong> Failed To Create Deal!
+        </div>
+        <script type="text/javascript">
+
+
+            function activatePlaceSearch() {
+                /* var input = document.getElementById('areaName');
+                 var autocomplete = new google.maps.places.Autocomplete(input);
+                 */
+
+                google.maps.event.addDomListener(window, 'load', intilize);
+                function intilize() {
+                    var autocomplete = new google.maps.places.Autocomplete(document.getElementById("areaName"));
+
+                    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+
+                        var place = autocomplete.getPlace();
+                        var location = place.formatted_address;
+                        var latitude = place.geometry.location.lat();
+                        var longitude = place.geometry.location.lng();
+                        document.getElementById('latitude').value = latitude;
+                        document.getElementById('longitude').value = longitude;
+                    });
+                }
+            }
+
+
+
+            function funSucc() {
+
+                $('#myModal').modal('hide');
+                $('body').removeClass('modal-open');
+                $('body').css('padding-right', '0px');
+                $('.modal-backdrop').remove();
+
+
+
+                $('#alertSuccess').fadeIn().delay(2000).fadeOut();
+                $('input[type="text"]').val('');
+                $("select").val([]);
+                $('input[type="file"]').val('');
+
+            }
+
+            function funFail() {
+                $('#myModal').modal('hide');
+                $('body').removeClass('modal-open');
+                $('body').css('padding-right', '0px');
+                $('.modal-backdrop').remove();
+
+
+
+                $('#alertFail').fadeIn().delay(2000).fadeOut();
+
+            }
+        </script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArWyenkA-wL0uW9KHMckk7tJ3R5RxtW50&libraries=places&callback=activatePlaceSearch"
+                type="text/javascript"></script>
+

@@ -1,0 +1,148 @@
+﻿@model fypPromolac.Models.notificationModel
+
+@{
+    ViewBag.Title = "notify";
+}
+
+<link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.js"></script>
+
+@using (Ajax.BeginForm("notify", "notification", new AjaxOptions()
+{
+
+
+    OnSuccess = "funSucc",
+    OnFailure = "funFail",
+    HttpMethod = "Post"
+
+}))
+
+
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4" style="background-color: darkturquoise;color:aliceblue;margin-top:6%;
+    padding: 15px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;">CREATE NOTIFICATION</div>
+        <div class="col-sm-4"></div>
+    </div>
+    <hr />
+    <br />
+    <div class="col-sm-3"></div>
+    <div class="col-sm-5">
+        <div class="form-horizontal">
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.vendorId, htmlAttributes: new { @class = "" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.notificationTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.notificationTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.notificationTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.notificationDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.notificationDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.notificationDescription, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.areaName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.DropDownListFor(model => model.areaName, new SelectList(Model.detail, "areaName", "areaName"), "select", new { @class = "form-control chosen-select", @multiple = "true", @placeholder = "Select Area" })
+
+
+                </div>
+            </div>
+            <div class="modal fade" id="myModal" style="margin-top:20%;" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+
+                        <div class="modal-body" style="text-align:center;">
+                            <h3>Are You Sure To Generate Notification?</h3>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" style="width:15%;" data-dismiss="modal">No</button>
+                            <input type="submit" value="Yes" class="btn btn-danger" style="width:15%;">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="button"  class="btn btn-default" style="width:45%;">@Html.ActionLink("Back to Home", "../controlPanel/controlPanel")</button>
+                    <button type="button" data-toggle="modal" class="btn btn-default" data-target="#myModal" style="width:45%;">Create</button>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+             
+    </div>
+    <div class="col-sm-4"></div>
+    
+}
+
+
+
+
+<div id="alertSuccess" class="alert alert-success alert-dismissible" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Success!</strong> Notification Created Successfully!
+</div>
+<div id="alertFail" class="alert alert-danger alert-dismissible" style="display:none;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Failed!</strong> Failed To Create Notification!
+</div>
+<script type="text/javascript">
+
+    $('.chosen-select').chosen();
+
+
+
+
+    function funSucc() {
+
+        $('#myModal').modal('hide');
+        $('body').removeClass('modal-open');
+        $('body').css('padding-right', '0px');
+        $('.modal-backdrop').remove();
+
+
+
+        $('#alertSuccess').fadeIn().delay(2000).fadeOut();
+        $('input[type="text"]').val('');
+        $("select").val([]);
+        $('input[type="file"]').val('');
+        $("areaName_chosen").val([]);
+    }
+
+    function funFail() {
+        $('#myModal').modal('hide');
+        $('body').removeClass('modal-open');
+        $('body').css('padding-right', '0px');
+        $('.modal-backdrop').remove();
+
+
+
+        $('#alertFail').fadeIn().delay(2000).fadeOut();
+
+    }
+
+</script>

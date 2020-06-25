@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="userAuthenticationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="areas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="areaId" Type="int" Nullable="false" />
+    <Property Name="areaName" Type="varchar(max)" Nullable="false" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="members">
+    <Key>
+      <PropertyRef Name="memberID" />
+    </Key>
+    <Property Name="memberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="m_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="m_userName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="m_password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="m_role" Type="varchar" MaxLength="50" />
+    <Property Name="m_admin" Type="int" />
+  </EntityType>
+  <EntityType Name="messages">
+    <Key>
+      <PropertyRef Name="messageid" />
+    </Key>
+    <Property Name="messageid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="m_allowed" Type="int" Nullable="false" />
+    <Property Name="m_sent" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="notificationTable">
+    <Key>
+      <PropertyRef Name="notificationId" />
+    </Key>
+    <Property Name="notificationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="notificationTitle" Type="text" />
+    <Property Name="notificationDescription" Type="varchar" MaxLength="50" />
+    <Property Name="areaNotifier" Type="char" MaxLength="10" />
+    <Property Name="notificationImage" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="packages">
+    <Key>
+      <PropertyRef Name="pkgId" />
+    </Key>
+    <Property Name="pkgId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pakgName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="subUserAllowed" Type="int" Nullable="false" />
+    <Property Name="notfAllowed" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userInfo">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="userRole" Type="varchar" MaxLength="50" />
+    <Property Name="userAdmin" Type="varchar" MaxLength="50" />
+    <Property Name="m_Allowed" Type="int" />
+    <Property Name="m_sent" Type="int" />
+  </EntityType>
+  <Association Name="FK__areas__areaId__5DCAEF64">
+    <End Role="userInfo" Type="Self.userInfo" Multiplicity="1" />
+    <End Role="areas" Type="Self.areas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userInfo">
+        <PropertyRef Name="userId" />
+      </Principal>
+      <Dependent Role="areas">
+        <PropertyRef Name="areaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="userAuthenticationModelStoreContainer">
+    <EntitySet Name="areas" EntityType="Self.areas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="members" EntityType="Self.members" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="messages" EntityType="Self.messages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="notificationTable" EntityType="Self.notificationTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="packages" EntityType="Self.packages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userInfo" EntityType="Self.userInfo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__areas__areaId__5DCAEF64" Association="Self.FK__areas__areaId__5DCAEF64">
+      <End Role="userInfo" EntitySet="userInfo" />
+      <End Role="areas" EntitySet="areas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

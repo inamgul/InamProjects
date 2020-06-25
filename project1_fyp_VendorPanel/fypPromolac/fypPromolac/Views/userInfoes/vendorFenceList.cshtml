@@ -1,0 +1,52 @@
+﻿@model IEnumerable<fypPromolac.fence>
+
+@{
+    ViewBag.Title = "fenceList";
+}
+
+<h2>fenceList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.vendor.vendorUserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.radius)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.notification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.area)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.vendor.vendorUserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.radius)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.notification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.area)
+            </td>
+
+
+
+        </tr>
+    }
+
+</table>

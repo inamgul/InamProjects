@@ -1,0 +1,40 @@
+﻿@model fypPromolac.Models.subUserModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+@using (Html.BeginForm("Edit","userInfoes",FormMethod.Post))
+
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>userInfo</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.subUserId)
+    <h2>You Are Editing InfoFor  @Html.ValidationMessageFor(model => model.subUserUserName, "", new { @class = "text-danger" }) </h2>
+       
+        
+
+               @Html.LabelFor(model => model.area, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @foreach (var x in Model.detail)
+            {
+                <span style="margin-right:73%;">@x.areaName</span>
+                @Html.ActionLink("Remove", "RemoveArea", new { areaa = x.areaName, id = Model.subUserId })
+                <br />
+            }
+        </div>
+        <br /><br />
+
+    </div>
+    }
+
+<div>
+    @Html.ActionLink("Add Area", "AddArea", new {id= Model.subUserId})
+    @Html.ActionLink("Back to List", "Index")
+</div>

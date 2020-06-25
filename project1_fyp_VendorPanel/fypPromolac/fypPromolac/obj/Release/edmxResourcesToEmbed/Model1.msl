@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="userAuthenticationModelStoreContainer" CdmEntityContainer="userAuthenticationEntities">
+    <EntitySetMapping Name="userInfo">
+      <EntityTypeMapping TypeName="userAuthenticationModel.userInfo">
+        <MappingFragment StoreEntitySet="userInfo">
+          <ScalarProperty Name="m_sent" ColumnName="m_sent" />
+          <ScalarProperty Name="m_Allowed" ColumnName="m_Allowed" />
+          <ScalarProperty Name="userAdmin" ColumnName="userAdmin" />
+          <ScalarProperty Name="userRole" ColumnName="userRole" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="areas">
+      <EntityTypeMapping TypeName="userAuthenticationModel.areas">
+        <MappingFragment StoreEntitySet="areas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="areaName" ColumnName="areaName" />
+          <ScalarProperty Name="areaId" ColumnName="areaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="packages">
+      <EntityTypeMapping TypeName="userAuthenticationModel.packages">
+        <MappingFragment StoreEntitySet="packages">
+          <ScalarProperty Name="notfAllowed" ColumnName="notfAllowed" />
+          <ScalarProperty Name="subUserAllowed" ColumnName="subUserAllowed" />
+          <ScalarProperty Name="pakgName" ColumnName="pakgName" />
+          <ScalarProperty Name="pkgId" ColumnName="pkgId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="members">
+      <EntityTypeMapping TypeName="userAuthenticationModel.members">
+        <MappingFragment StoreEntitySet="members">
+          <ScalarProperty Name="m_admin" ColumnName="m_admin" />
+          <ScalarProperty Name="m_role" ColumnName="m_role" />
+          <ScalarProperty Name="m_password" ColumnName="m_password" />
+          <ScalarProperty Name="m_userName" ColumnName="m_userName" />
+          <ScalarProperty Name="m_name" ColumnName="m_name" />
+          <ScalarProperty Name="memberID" ColumnName="memberID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="messages">
+      <EntityTypeMapping TypeName="userAuthenticationModel.messages">
+        <MappingFragment StoreEntitySet="messages">
+          <ScalarProperty Name="m_sent" ColumnName="m_sent" />
+          <ScalarProperty Name="m_allowed" ColumnName="m_allowed" />
+          <ScalarProperty Name="messageid" ColumnName="messageid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="notificationTable">
+      <EntityTypeMapping TypeName="userAuthenticationModel.notificationTable">
+        <MappingFragment StoreEntitySet="notificationTable">
+          <ScalarProperty Name="notificationImage" ColumnName="notificationImage" />
+          <ScalarProperty Name="areaNotifier" ColumnName="areaNotifier" />
+          <ScalarProperty Name="notificationDescription" ColumnName="notificationDescription" />
+          <ScalarProperty Name="notificationTitle" ColumnName="notificationTitle" />
+          <ScalarProperty Name="notificationId" ColumnName="notificationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

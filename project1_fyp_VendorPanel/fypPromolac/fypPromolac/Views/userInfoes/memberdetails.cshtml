@@ -1,0 +1,146 @@
+﻿@model IEnumerable<fypPromolac.Models.userPackageModel>
+
+@{
+    ViewBag.Title = "memberdetails";
+}
+<br />
+<div class="row">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6" style="background-color: darkturquoise;color:aliceblue;margin-top:6%;
+    padding: 15px;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 25px;
+    text-align: center;">MEMBERS INFORMATION</div>
+    <div class="col-sm-3"></div>
+</div>
+<br />
+<br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.userName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.dividedShareOfMessages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.notificationSent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fenceCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dealsCreated)
+            </th>
+            <th></th>
+
+
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.userName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.dividedShareOfMessages)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.notificationSent)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.fenceCreated)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.dealsCreated)
+    </td>
+
+    <td>
+        @foreach (var x in item.detail)
+        {
+
+            <span style="">@x.areaName</span><br />
+        }
+        <div class="modal fade" id="myModal" role="dialog" style="margin-top:11%;">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content" style="background:aliceblue;">
+
+                    <div class="modal-body" style="text-align:center;">
+                        @foreach (var x in item.detail)
+                        {<div class="col-md-3"></div>
+                            <div class="col-md-4" style="font-weight:bold;">
+                                @x.areaName
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-info btn-primary btn-md" data-dismiss="modal">  @Html.ActionLink("Remove", "RemoveArea", new { areaa = x.areaName, id = item.vendorId })</button>
+                            </div>
+                            <br /><hr />
+
+                        }
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row">
+                            <div class="col-sm-4"></div>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-info btn-primary btn-md" style="width:45%;" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-info btn-primary btn-md" style="width:45%;"> @Html.ActionLink("Add Area", "AddArea", new { id = item.vendorId })</button>
+                            </div>
+                            <div class="col-sm-4"></div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </td>
+
+
+    <td>
+       
+
+        <div class="dropdown dropleft float-right">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                Details
+            </button>
+            <div class="dropdown-menu" style="padding:2px;">
+                @Html.ActionLink("Fences", "vendorFenceList", new { id = item.vendorId })<br />
+                @Html.ActionLink("Deals", "vendorDealList", new { id = item.vendorId })<br />
+                @Html.ActionLink("Notifications", "vendorNotificationList", new { id = item.vendorId })
+            </div>
+        </div>
+
+    </td>
+    
+</tr>
+    }
+
+</table>
+<br /><br />
+<div class="row">
+    <div class="col-sm-4" style="text-align:center;"> </div>
+
+
+    <div class="col-sm-4">
+        <button type="button" class="btn btn-info btn-primary btn-md" style="width:100%;"> @Html.ActionLink("Back", "../controlPanel/controlPanel")</button>
+        
+    </div>
+
+
+    <div class="col-md-4 ">
+
+    </div>
+
+</div>
